@@ -13,12 +13,13 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="AUTOFILL_HINT_USERNAME" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -28,12 +29,13 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
+        android:autofillHints="@string/password" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -41,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:text="Login"
+        android:text="@string/login"
         android:background="@color/colorButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonCreateAccount"
@@ -54,7 +56,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="140dp"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:background="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@+id/buttonLogin"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="Sign In"
+        android:text="@string/sign_in"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextUsername"

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Andres Rodriguez Inventory App</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="create_account">Create Account</string>
+    <string name="sign_in">Sign In</string>
 </resources>
