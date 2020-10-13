@@ -2,6 +2,7 @@ package com.zybooks.andresrodriguezinventoryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -33,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
         UserDatabase userDatabase = new UserDatabase(this);
 
         System.out.println("User exists: " + userDatabase.isExistingUser(username, userPassword));
+        if (userDatabase.isExistingUser(username, userPassword)) {
+            Intent goToItemGridActivty = new Intent(getApplicationContext(), ItemGridActivity.class);
+            startActivity(goToItemGridActivty);
+        } else {
+            System.out.println("No account found. Please check username and password");
+        }
     }
 
     public void tapCreateAccount(View view) {
@@ -51,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("User not added");
         } else {
             System.out.println("User Added!\n" + "Id: " + userAddedId + "\n" + "Username: " + username);
+            Intent goToItemGridActivty = new Intent(getApplicationContext(), ItemGridActivity.class);
+            startActivity(goToItemGridActivty);
         }
     }
 

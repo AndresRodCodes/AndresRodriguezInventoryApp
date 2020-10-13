@@ -17,7 +17,7 @@ public class UserDatabase extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, VERSION);
     }
 
-    // Construct the UserTable
+    // Construct the UserTable with columns
     private static final class UserTable {
         private static final String TABLE = "users";
         private static final String COL_ID = "_id";
