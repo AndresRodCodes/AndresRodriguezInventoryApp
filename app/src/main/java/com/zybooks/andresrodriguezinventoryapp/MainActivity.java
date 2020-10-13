@@ -27,10 +27,34 @@ public class MainActivity extends AppCompatActivity {
     public void tapLogin(View view) {
         System.out.println("Login button has been tapped!");
 
+        // Get username and password from EditTexts
         String username = editTextUsername.getText().toString();
         String userPassword = editTextPassword.getText().toString();
 
         System.out.println("Username: " + username + "\nPassword: " + userPassword);
+
+        UserDatabase userDatabase = new UserDatabase(this);
+
+        System.out.println("User exists: " + userDatabase.isExistingUser(username, userPassword));
+    }
+
+    public void tapCreateAccount(View view) {
+        System.out.println("Create Account button has been tapped!");
+
+        // Get username and password from EditTexts
+        String username = editTextUsername.getText().toString();
+        String userPassword = editTextPassword.getText().toString();
+
+        System.out.println("Username: " + username + "\nPassword: " + userPassword);
+
+        UserDatabase userDatabase = new UserDatabase(this);
+        long userAddedId = userDatabase.addUser(username, userPassword);
+
+        if (userAddedId == -1) {
+            System.out.println("User not added");
+        } else {
+            System.out.println("User Added!\n" + "Id: " + userAddedId + "\n" + "Username: " + username);
+        }
     }
 
     @Override

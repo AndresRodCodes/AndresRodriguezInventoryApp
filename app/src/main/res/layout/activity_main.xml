@@ -44,8 +44,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:text="@string/login"
-        android:background="@color/colorButton"
         android:onClick="tapLogin"
+        android:background="@color/colorButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/buttonCreateAccount"
         app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
@@ -58,6 +58,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="140dp"
         android:text="@string/create_account"
+        android:onClick="tapCreateAccount"
         android:background="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@+id/buttonLogin"
         app:layout_constraintStart_toStartOf="parent"
