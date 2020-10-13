@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToItemGridActivty);
         } else {
             System.out.println("No account found. Please check username and password");
+            Toast invalidAccountToast = Toast.makeText(getApplicationContext(), "Account not found", Toast.LENGTH_LONG);
+            invalidAccountToast.show();
         }
     }
 
@@ -56,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (userAddedId == -1) {
             System.out.println("User not added");
+            Toast accountNotCreatedToast = Toast.makeText(getApplicationContext(), "Account not created", Toast.LENGTH_SHORT);
+            accountNotCreatedToast.show();
         } else {
             System.out.println("User Added!\n" + "Id: " + userAddedId + "\n" + "Username: " + username);
+            Toast accountCreatedToast = Toast.makeText(getApplicationContext(), "Account created!", Toast.LENGTH_SHORT);
+            accountCreatedToast.show();
             Intent goToItemGridActivty = new Intent(getApplicationContext(), ItemGridActivity.class);
             startActivity(goToItemGridActivty);
         }
