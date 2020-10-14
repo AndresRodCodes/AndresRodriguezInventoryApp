@@ -36,10 +36,14 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("User exists: " + userDatabase.isExistingUser(username, userPassword));
         if (userDatabase.isExistingUser(username, userPassword)) {
+            // User exists in the database
+            // Switch to ItemGridActivity
             Intent goToItemGridActivty = new Intent(getApplicationContext(), ItemGridActivity.class);
             startActivity(goToItemGridActivty);
         } else {
+            // User does not exist in the database
             System.out.println("No account found. Please check username and password");
+            // Give user feedback
             Toast invalidAccountToast = Toast.makeText(getApplicationContext(), "Account not found", Toast.LENGTH_LONG);
             invalidAccountToast.show();
         }
@@ -54,19 +58,23 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("Username: " + username + "\nPassword: " + userPassword);
 
+        // Initialize SQLite user database.
         UserDatabase userDatabase = new UserDatabase(this);
         long userAddedId = userDatabase.addUser(username, userPassword);
 
         if (userAddedId == -1) {
             System.out.println("User not added");
+            // Give user feedback
             Toast accountNotCreatedToast = Toast.makeText(getApplicationContext(), "Account not created", Toast.LENGTH_SHORT);
             accountNotCreatedToast.show();
         } else {
             System.out.println("User Added!\n" + "Id: " + userAddedId + "\n" + "Username: " + username);
+            // Give user feedback
             Toast accountCreatedToast = Toast.makeText(getApplicationContext(), "Account created!", Toast.LENGTH_SHORT);
             accountCreatedToast.show();
-            Intent goToItemGridActivty = new Intent(getApplicationContext(), ItemGridActivity.class);
-            startActivity(goToItemGridActivty);
+            // Switch to ItemGridActivity
+            Intent goToItemGridActivity = new Intent(getApplicationContext(), ItemGridActivity.class);
+            startActivity(goToItemGridActivity);
         }
     }
 
