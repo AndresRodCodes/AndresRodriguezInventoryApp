@@ -45,6 +45,8 @@ public class AddItemActivity extends AppCompatActivity {
             } else {
                 // Item Added
                 Toast.makeText(getApplicationContext(), "Item Added", Toast.LENGTH_SHORT).show();
+                editTextItemName.setText("");
+                editTextItemCount.setText("");
             }
         }
     }

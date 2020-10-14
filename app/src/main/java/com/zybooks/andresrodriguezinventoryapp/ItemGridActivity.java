@@ -12,6 +12,9 @@ public class ItemGridActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_grid);
+
+        ItemDatabase itemDatabase = new ItemDatabase(this);
+        itemDatabase.getAllItems();
     }
 
     public void onTapAddItemFAB(View view) {

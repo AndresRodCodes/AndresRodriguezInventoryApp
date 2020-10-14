@@ -2,8 +2,13 @@ package com.zybooks.andresrodriguezinventoryapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class ItemDatabase extends SQLiteOpenHelper {
 
@@ -42,10 +47,28 @@ public class ItemDatabase extends SQLiteOpenHelper {
         SQLiteDatabase dbItems = getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(ItemTable.COL_ITEM_NAME, "potato");
-        values.put(ItemTable.COL_ITEM_COUNT, 1);
+        values.put(ItemTable.COL_ITEM_NAME, itemName);
+        values.put(ItemTable.COL_ITEM_COUNT, itemCount);
 
         long itemId = dbItems.insert(ItemDatabase.ItemTable.TABLE, null, values);
         return itemId;
+    }
+
+    public ArrayList<Item> getAllItems() {
+        ArrayList<Item> itemsArray = new ArrayList<>();
+        SQLiteDatabase dbItems = getReadableDatabase();
+
+        String sql = "Select * from " + ItemDatabase.ItemTable.TABLE;
+        Cursor cursor = dbItems.rawQuery(sql, new String[] {});
+        if (cursor.moveToFirst()) {
+            do {
+                long id = cursor.getLong(0);
+                String dbItemName = cursor.getString(1);
+                int dbCount = cursor.getInt(2);
+                Log.d(TAG, "Item ID: " + id + ", Item Name: " + dbItemName + ", Item count: " + dbCount);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return itemsArray;
     }
 }
