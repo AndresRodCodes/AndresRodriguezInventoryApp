@@ -36,9 +36,9 @@ public class ItemDatabase extends SQLiteOpenHelper {
         db.execSQL("drop table if exists " + ItemDatabase.ItemTable.TABLE);
         onCreate(db);
     }
-    // String itemName, int itemCount
-    public long addItem() {
-        // Add user to the database
+
+    public long addItem(String itemName, int itemCount) {
+        // Add item to the database
         SQLiteDatabase dbItems = getWritableDatabase();
 
         ContentValues values = new ContentValues();

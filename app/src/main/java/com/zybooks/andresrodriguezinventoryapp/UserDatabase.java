@@ -53,13 +53,13 @@ public class UserDatabase extends SQLiteOpenHelper {
                 return -1;
             } else {
                 // Add user to the database
-                SQLiteDatabase db = getWritableDatabase();
+                SQLiteDatabase dbUsers = getWritableDatabase();
 
                 ContentValues values = new ContentValues();
                 values.put(UserTable.COL_USERNAME, username);
                 values.put(UserTable.COL_PASSWORD, password);
 
-                long userId = db.insert(UserTable.TABLE, null, values);
+                long userId = dbUsers.insert(UserTable.TABLE, null, values);
                 return userId;
             }
         }
