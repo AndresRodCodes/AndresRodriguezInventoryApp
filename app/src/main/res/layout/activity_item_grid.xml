@@ -115,6 +115,7 @@
         android:layout_marginBottom="30dp"
         android:background="@color/colorButton"
         android:clickable="true"
+        android:onClick="onTapAddItemFAB"
         app:backgroundTint="@color/colorButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
