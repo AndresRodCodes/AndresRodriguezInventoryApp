@@ -11,17 +11,26 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class NotificationPermissionActivity extends AppCompatActivity {
     private final int SMS_PERMISSION_CODE = 1;
+
+    TextView textViewPermissionStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_permission);
 
+        textViewPermissionStatus = findViewById(R.id.textViewPermissionStatus);
         // TODO: Update permission status text to granted if it has been granted
+        if ( ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+            textViewPermissionStatus.setText("Permission Status: GRANTED");
+        } else {
+            textViewPermissionStatus.setText("Permission Status: DENIED");
+        }
     }
 
     public void onTapRequestPermission(View view) {
