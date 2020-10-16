@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class ItemAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         if (inflater == null) {
             inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
@@ -48,9 +49,26 @@ public class ItemAdapter extends ArrayAdapter {
 
         TextView textViewItemName = convertView.findViewById(R.id.textViewItemName);
         TextView textViewItemCount = convertView.findViewById(R.id.textViewItemCount);
+        Button buttonEditItem = convertView.findViewById(R.id.buttonEditItem);
+        Button buttonDeleteItem = convertView.findViewById(R.id.buttonDeleteItem);
 
         textViewItemName.setText(arrayItemList.get(position).itemName);
         textViewItemCount.setText((Integer.toString(arrayItemList.get(position).itemCount)));
+        buttonEditItem.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                System.out.println("Button clicked with id: " +  arrayItemList.get(position).itemId);
+            }
+        });
+
+        buttonDeleteItem.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                System.out.println("Delete button with id: " + arrayItemList.get(position).itemId);
+            }
+        });
 
         return convertView;
     }
