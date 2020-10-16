@@ -87,4 +87,15 @@ public class ItemDatabase extends SQLiteOpenHelper {
                 new String[] { Long.toString(itemId) });
         return rowsDeleted > 0;
     }
+
+    public boolean updateItem (long itemId, String itemName, int itemCount) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(ItemTable.COL_ITEM_NAME, itemName);
+        values.put(ItemTable.COL_ITEM_COUNT, itemCount);
+
+        int itemsUpdated = db.update(ItemTable.TABLE, values, "_id = ?", new String[]{ Float.toString(itemId) });
+        return itemsUpdated > 0;
+    }
 }

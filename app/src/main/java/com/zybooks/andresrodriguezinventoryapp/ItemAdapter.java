@@ -60,7 +60,13 @@ public class ItemAdapter extends ArrayAdapter {
             @Override
             public void onClick(View view) {
                 long itemId = arrayItemList.get(position).itemId;
+                String itemName = arrayItemList.get(position).itemName;
+                int itemCount = arrayItemList.get(position).itemCount;
+
                 System.out.println("Button clicked with id: " +  itemId);
+                ItemDatabase itemDatabase = new ItemDatabase(getContext());
+                boolean itemUpdated = itemDatabase.updateItem(itemId, itemName, itemCount + 1);
+                System.out.println("Item Updated: " + itemUpdated);
             }
         });
 
