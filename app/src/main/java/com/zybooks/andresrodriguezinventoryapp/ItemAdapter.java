@@ -1,6 +1,7 @@
 package com.zybooks.andresrodriguezinventoryapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,9 +65,14 @@ public class ItemAdapter extends ArrayAdapter {
                 int itemCount = arrayItemList.get(position).itemCount;
 
                 System.out.println("Button clicked with id: " +  itemId);
-                ItemDatabase itemDatabase = new ItemDatabase(getContext());
-                boolean itemUpdated = itemDatabase.updateItem(itemId, itemName, itemCount + 1);
-                System.out.println("Item Updated: " + itemUpdated);
+//                ItemDatabase itemDatabase = new ItemDatabase(getContext());
+//                boolean itemUpdated = itemDatabase.updateItem(itemId, itemName, itemCount + 1);
+//                System.out.println("Item Updated: " + itemUpdated);
+                Intent goToEditItemActivity = new Intent(getContext(), EditItemActivity.class);
+                goToEditItemActivity.putExtra("EXTRA_ITEM_ID", itemId);
+                goToEditItemActivity.putExtra("EXTRA_ITEM_NAME", itemName);
+                goToEditItemActivity.putExtra("EXTRA_ITEM_COUNT", itemCount);
+                context.startActivity(goToEditItemActivity);
             }
         });
 

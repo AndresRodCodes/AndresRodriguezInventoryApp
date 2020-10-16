@@ -20,7 +20,7 @@ public class AddItemActivity extends AppCompatActivity {
         editTextItemName = findViewById(R.id.editTextItemName);
         editTextItemCount = findViewById(R.id.editTextItemCount);
     }
-
+    
     public void onTapAddItemButton(View view) {
         // Get item name and count text
         String userItemName = editTextItemName.getText().toString();
