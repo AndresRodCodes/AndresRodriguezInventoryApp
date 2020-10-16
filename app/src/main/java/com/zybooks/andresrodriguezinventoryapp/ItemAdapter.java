@@ -84,6 +84,9 @@ public class ItemAdapter extends ArrayAdapter {
                 System.out.println("Delete button with id: " + arrayItemList.get(position).itemId);
                 ItemDatabase itemDatabase = new ItemDatabase(getContext());
                 itemDatabase.deleteItem(itemId);
+
+                Intent refreshItemGrid = new Intent(context, ItemGridActivity.class);
+                context.startActivity(refreshItemGrid);
             }
         });
 
