@@ -2,6 +2,7 @@ package com.zybooks.andresrodriguezinventoryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -44,5 +45,8 @@ public class EditItemActivity extends AppCompatActivity {
         ItemDatabase itemDatabase = new ItemDatabase(this);
         boolean itemUpdated = itemDatabase.updateItem(itemId, itemNameUpdated, itemCountUpdated);
         System.out.println("Item Updated: " + itemUpdated);
+
+        Intent goToItemGridActivity = new Intent(this, ItemGridActivity.class);
+        startActivity(goToItemGridActivity);
     }
 }
