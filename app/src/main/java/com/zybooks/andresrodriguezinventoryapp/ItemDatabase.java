@@ -80,4 +80,11 @@ public class ItemDatabase extends SQLiteOpenHelper {
         cursor.close();
         return itemsArray;
     }
+
+    public boolean deleteItem(long itemId) {
+        SQLiteDatabase db = getWritableDatabase();
+        int rowsDeleted = db.delete(ItemTable.TABLE, ItemTable.COL_ID + " = ?",
+                new String[] { Long.toString(itemId) });
+        return rowsDeleted > 0;
+    }
 }

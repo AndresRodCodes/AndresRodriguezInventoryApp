@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -58,7 +59,8 @@ public class ItemAdapter extends ArrayAdapter {
 
             @Override
             public void onClick(View view) {
-                System.out.println("Button clicked with id: " +  arrayItemList.get(position).itemId);
+                long itemId = arrayItemList.get(position).itemId;
+                System.out.println("Button clicked with id: " +  itemId);
             }
         });
 
@@ -66,7 +68,10 @@ public class ItemAdapter extends ArrayAdapter {
 
             @Override
             public void onClick(View view) {
+                long itemId = arrayItemList.get(position).itemId;
                 System.out.println("Delete button with id: " + arrayItemList.get(position).itemId);
+                ItemDatabase itemDatabase = new ItemDatabase(getContext());
+                itemDatabase.deleteItem(itemId);
             }
         });
 
