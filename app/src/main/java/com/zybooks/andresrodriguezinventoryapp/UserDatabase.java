@@ -103,7 +103,6 @@ public class UserDatabase extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         cursor.close();
-
         return userExists;
     }
 }

@@ -1,9 +1,12 @@
 package com.zybooks.andresrodriguezinventoryapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 
@@ -35,5 +38,24 @@ public class ItemGridActivity extends AppCompatActivity {
         gridViewItems = findViewById(R.id.gridViewItems);
         ItemAdapter itemAdapter = new ItemAdapter(this, R.id.gridViewItemLayout, arrayItem);
         gridViewItems.setAdapter(itemAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()){
+            case R.id.permission:
+                Intent goToPermissionActivity = new Intent(this, NotificationPermissionActivity.class);
+                startActivity(goToPermissionActivity);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

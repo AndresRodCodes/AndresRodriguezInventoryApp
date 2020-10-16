@@ -25,17 +25,19 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:text="Allow this app to communicate with your SMS messanger app to get notifications when inventory is running low."
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:text="@string/notification_permission_jist"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRequestPermission"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonRequestPermission"
         android:layout_width="169dp"
         android:layout_height="wrap_content"
         android:background="@color/colorButton"
-        android:text="Request Permission"
+        android:text="@string/request_permission"
+        android:onClick="onTapRequestPermission"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
