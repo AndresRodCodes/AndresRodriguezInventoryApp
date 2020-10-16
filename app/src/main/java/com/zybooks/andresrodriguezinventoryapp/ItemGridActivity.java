@@ -7,23 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 
+import java.util.ArrayList;
+
 public class ItemGridActivity extends AppCompatActivity {
 
     GridView gridViewItems;
-
-    String[] numberWord = {"One", "Two", "Three", "Four", "Five", "Six"};
+    ArrayList<Item> arrayItem = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_grid);
 
-        gridViewItems = findViewById(R.id.gridViewItems);
-        ItemAdapter itemAdapter = new ItemAdapter(this, numberWord);
-        gridViewItems.setAdapter(itemAdapter);
-
         ItemDatabase itemDatabase = new ItemDatabase(this);
-        itemDatabase.getAllItems();
+        arrayItem = itemDatabase.getAllItems();
+        System.out.println(arrayItem.get(4).itemName);
+
+        gridViewItems = findViewById(R.id.gridViewItems);
+        ItemAdapter itemAdapter = new ItemAdapter(this, R.id.gridViewItemLayout, arrayItem);
+        gridViewItems.setAdapter(itemAdapter);
     }
 
     public void onTapAddItemFAB(View view) {

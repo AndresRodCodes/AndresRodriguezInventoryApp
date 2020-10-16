@@ -66,6 +66,15 @@ public class ItemDatabase extends SQLiteOpenHelper {
                 String dbItemName = cursor.getString(1);
                 int dbCount = cursor.getInt(2);
                 Log.d(TAG, "Item ID: " + id + ", Item Name: " + dbItemName + ", Item count: " + dbCount);
+
+                // Add items to Array List of type Item
+                Item item = new Item();
+                item.itemId = id;
+                item.itemName = dbItemName;
+                item.itemCount = dbCount;
+
+                itemsArray.add(item);
+
             } while (cursor.moveToNext());
         }
         cursor.close();
