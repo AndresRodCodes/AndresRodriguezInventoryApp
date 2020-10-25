@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class ItemGridActivity extends AppCompatActivity {
 
     GridView gridViewItems;
     ArrayList<Item> arrayItem = new ArrayList<>();
+    TextView textViewNoItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,13 @@ public class ItemGridActivity extends AppCompatActivity {
     public void updateGridView() {
         ItemDatabase itemDatabase = new ItemDatabase(this);
         arrayItem = itemDatabase.getAllItems();
+
+        System.out.println(arrayItem.size());
+        // Remove no items text
+        if (arrayItem.size() > 0) {
+            textViewNoItems = findViewById(R.id.textViewNoItems);
+            textViewNoItems.setVisibility(View.INVISIBLE);
+        }
 
         gridViewItems = findViewById(R.id.gridViewItems);
         ItemAdapter itemAdapter = new ItemAdapter(this, R.id.gridViewItemLayout, arrayItem);

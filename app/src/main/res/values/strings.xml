@@ -7,4 +7,5 @@
     <string name="sign_in">Sign In</string>
     <string name="request_permission">Request Permission</string>
     <string name="notification_permission_jist">Allow this app to communicate with your SMS messanger app to get notifications when inventory is running low.</string>
+    <string name="add_item">Add item</string>
 </resources>
