@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ItemGridActivity extends AppCompatActivity {
@@ -27,6 +29,31 @@ public class ItemGridActivity extends AppCompatActivity {
         updateGridView();
     }
 
+    public void updateGrid(ArrayList<Item> arrayListItems) {
+        // Get grid view by id
+        gridViewItems = findViewById(R.id.gridViewItems);
+        // Create new item adapter with an array list passed in
+        ItemAdapter itemAdapter = new ItemAdapter(this, R.id.gridViewItemLayout, arrayListItems);
+        gridViewItems.setAdapter(itemAdapter);
+    }
+
+    public void onTapLowInventoryCheckBox(View checkBoxView) {
+        // Is the checkBox checked?
+        boolean checked = ((CheckBox) checkBoxView).isChecked();
+        if (checked){
+            ItemDatabase itemDatabase = new ItemDatabase(this);
+            ArrayList<Item> arrayLowInventoryItems;
+
+            // Get Low Inventory items
+            arrayLowInventoryItems = itemDatabase.getLowInventoryItems();
+
+            // Update item grid
+            updateGrid(arrayLowInventoryItems);
+        } else {
+            updateGridView();
+        }
+    }
+
     public void onTapAddItemFAB(View view) {
         // Go to Add Item Activity
         Intent goToAddItemActivty = new Intent(getApplicationContext(), AddItemActivity.class);
@@ -37,16 +64,13 @@ public class ItemGridActivity extends AppCompatActivity {
         ItemDatabase itemDatabase = new ItemDatabase(this);
         arrayItem = itemDatabase.getAllItems();
 
-        System.out.println(arrayItem.size());
         // Remove no items text
         if (arrayItem.size() > 0) {
             textViewNoItems = findViewById(R.id.textViewNoItems);
             textViewNoItems.setVisibility(View.INVISIBLE);
         }
-
-        gridViewItems = findViewById(R.id.gridViewItems);
-        ItemAdapter itemAdapter = new ItemAdapter(this, R.id.gridViewItemLayout, arrayItem);
-        gridViewItems.setAdapter(itemAdapter);
+        // Update items in grid view
+        updateGrid(arrayItem);
     }
 
     @Override

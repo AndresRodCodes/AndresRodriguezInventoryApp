@@ -16,6 +16,7 @@
         android:checked="false"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="onTapLowInventoryCheckBox"
         android:text="Show Low Inventory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
