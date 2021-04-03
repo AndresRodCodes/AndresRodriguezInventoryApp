@@ -92,7 +92,29 @@ public class ItemDatabase extends SQLiteOpenHelper {
     public ArrayList<Item> getLowInventoryItems(){
         // ArrayList to hold low inventory items
         ArrayList<Item> lowInventoryItems = new ArrayList<>();
+        SQLiteDatabase dbItems = getReadableDatabase();
 
+        // Select all items in item database table where item count is less than or equal to 5
+        String sql = "Select * from " + ItemDatabase.ItemTable.TABLE + " where " + ItemTable.COL_ITEM_COUNT + " <= 5";
+        Cursor cursor = dbItems.rawQuery(sql, new String[] {});
+
+        // Place items from ItemDatabase table into the loInventoryItems ArrayList
+        if (cursor.moveToFirst()){
+            do {
+                long id = cursor.getLong(0);
+                String dbItemName = cursor.getString(1);
+                int dbCount = cursor.getInt(2);
+
+                // Add items to ArrayList of Type Item
+                Item item = new Item();
+                item.itemId = id;
+                item.itemName = dbItemName;
+                item.itemCount = dbCount;
+
+                lowInventoryItems.add(item);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
         return lowInventoryItems;
     }
 
