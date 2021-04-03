@@ -27,7 +27,7 @@ public class ItemDatabase extends SQLiteOpenHelper {
         private static final String COL_ITEM_NAME = "item_name";
         private static final String COL_ITEM_COUNT = "item_count";
     }
-
+    // Create the ItemTable
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + ItemDatabase.ItemTable.TABLE + " (" +
@@ -42,24 +42,31 @@ public class ItemDatabase extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Adds item to the item database
     public long addItem(String itemName, int itemCount) {
-        // Add item to the database
+        // Get the item table from database
         SQLiteDatabase dbItems = getWritableDatabase();
 
+        // Place item details into a ContentValues object
         ContentValues values = new ContentValues();
         values.put(ItemTable.COL_ITEM_NAME, itemName);
         values.put(ItemTable.COL_ITEM_COUNT, itemCount);
 
+        // Insert the item into the item table
         long itemId = dbItems.insert(ItemDatabase.ItemTable.TABLE, null, values);
         return itemId;
     }
 
+    // Get all items in the item table
     public ArrayList<Item> getAllItems() {
+        // ArrayList to hold all items
         ArrayList<Item> itemsArray = new ArrayList<>();
         SQLiteDatabase dbItems = getReadableDatabase();
 
+        // Select all items in the ItemDatabase table
         String sql = "Select * from " + ItemDatabase.ItemTable.TABLE;
         Cursor cursor = dbItems.rawQuery(sql, new String[] {});
+        // Place items in Item Database Table into the itemsArray
         if (cursor.moveToFirst()) {
             do {
                 long id = cursor.getLong(0);
@@ -81,6 +88,15 @@ public class ItemDatabase extends SQLiteOpenHelper {
         return itemsArray;
     }
 
+    // Get low inventory Items from item table
+    public ArrayList<Item> getLowInventoryItems(){
+        // ArrayList to hold low inventory items
+        ArrayList<Item> lowInventoryItems = new ArrayList<>();
+
+        return lowInventoryItems;
+    }
+
+    // Delete an item by its item ID
     public boolean deleteItem(long itemId) {
         SQLiteDatabase db = getWritableDatabase();
         int rowsDeleted = db.delete(ItemTable.TABLE, ItemTable.COL_ID + " = ?",
@@ -88,6 +104,7 @@ public class ItemDatabase extends SQLiteOpenHelper {
         return rowsDeleted > 0;
     }
 
+    // Update an item
     public boolean updateItem (long itemId, String itemName, int itemCount) {
         SQLiteDatabase db = getWritableDatabase();
 
