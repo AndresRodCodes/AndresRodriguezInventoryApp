@@ -29,6 +29,13 @@ public class ItemGridActivity extends AppCompatActivity {
         updateGridView();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateGridView();
+    }
+
+    // Updates the grid with the passed in array list
     public void updateGrid(ArrayList<Item> arrayListItems) {
         // Get grid view by id
         gridViewItems = findViewById(R.id.gridViewItems);
@@ -56,8 +63,8 @@ public class ItemGridActivity extends AppCompatActivity {
 
     public void onTapAddItemFAB(View view) {
         // Go to Add Item Activity
-        Intent goToAddItemActivty = new Intent(getApplicationContext(), AddItemActivity.class);
-        startActivity(goToAddItemActivty);
+        Intent goToAddItemActivity = new Intent(getApplicationContext(), AddItemActivity.class);
+        startActivity(goToAddItemActivity);
     }
 
     public void updateGridView() {
